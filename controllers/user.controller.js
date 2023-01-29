@@ -16,6 +16,7 @@ const signIn = async (req, res) => {
       //si el usario existe, preguntamos si el password es valido. Hay que hacerlo asi porque el password es encrptado.
       return res.json({
         msg: "ok",
+        user:u,
         // si esta ok, devuelveme un token
         token: jwt.getToken(req.body.username),
       });
