@@ -8,7 +8,7 @@ const routes = require("./routes");
 
 connectDb();
 
-var allowedOrigins = ['http://localhost:3000'];
+var allowedOrigins = ['http://localhost:3000',"https://front-ecommerce5.vercel.app"];
 app.use(cors({
   credentials:true,
   origin: function(origin, callback){
