@@ -11,7 +11,7 @@ const productSchema = mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Available', 'No Stock', 'Descontinuado']
+    enum: ['Disponible', 'No Stock', 'Descontinuado']
   },
 
   stock:{ //revisar que no sea quantity
