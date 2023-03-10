@@ -98,4 +98,4 @@ const remove = async (req, res) => {
   }
 };
 
-module.exports = { newCarrito, addItem, remove };
+module.exports = { newCarrito, addItem, remove, obtenerCarrito };
