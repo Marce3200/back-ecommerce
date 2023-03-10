@@ -11,7 +11,25 @@ const newCarrito = async (username) => {
     }); //el carrito nuevo se crea con el ID del usuario y la lista de productos tiene arreglo vacio porque no tiene ni un producto.
   } catch (error) {}
 };
-
+const obtenerCarrito = async (req, res) =>{
+  
+  
+  try {const username = jwt.extractSub(req);
+ 
+    const filter = {
+      //crea filtro para buscar usuario en bd
+      username: username,
+    };
+  
+    const car = await carrito.findOne(filter);
+    return res.json( car.productList );
+  } catch (error) {
+    return res.status(500).json({
+      msg: "internal server error",
+      details: error.message,
+    });
+  }
+}
 const addItem = async (req, res) => {
   try {
     const username = jwt.extractSub(req);
@@ -67,7 +85,7 @@ const remove = async (req, res) => {
       //findIndex es un metodo de arreglo, encuentra el indice de algo que estemos buscando, dentro d ela lista de productos que es car.productlist
       return el.itemId === String(itemId); // cada el (elemento) es un producto. Va a buscar el el.id sea igual al que estamos buscando
     });
-    car.productList.pull(car.productList[requiredIndex]);//set es para modificar, push para agregar, pull para eliminar
+    car.productList.pull(car.productList[requiredIndex]); //set es para modificar, push para agregar, pull para eliminar
     car.save();
     return res.json({
       msg: "ok",
