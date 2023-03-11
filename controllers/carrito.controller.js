@@ -54,7 +54,7 @@ const addItem = async (req, res) => {
     } else {
       car.productList.set(requiredIndex, {
         itemId: itemId,
-        quantity: quantity,
+        quantity: car.productList[requiredIndex].quantity + quantity,
       }); //con esto hacemos el update de la cantidad de producto en el carrito
 
       await car.save();
